@@ -11,6 +11,7 @@ import (
 	"github.com/ChainSafe/sygma-relayer/chains/substrate/events"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/registry/parser"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/block"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/sygmaprotocol/sygma-core/relayer/message"
@@ -18,7 +19,7 @@ import (
 
 type Connection interface {
 	GetFinalizedHead() (types.Hash, error)
-	GetBlock(blockHash types.Hash) (*types.SignedBlock, error)
+	GetBlock(blockHash types.Hash) (*block.SignedBlock, error)
 	GetBlockHash(blockNumber uint64) (types.Hash, error)
 	GetBlockEvents(hash types.Hash) ([]*parser.Event, error)
 	UpdateMetatdata() error

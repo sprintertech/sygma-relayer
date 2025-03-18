@@ -21,6 +21,7 @@ import (
 	"github.com/ChainSafe/sygma-relayer/e2e/evm"
 	"github.com/ChainSafe/sygma-relayer/e2e/substrate"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/block"
 	"github.com/sygmaprotocol/sygma-core/relayer/message"
 	"github.com/sygmaprotocol/sygma-core/relayer/proposal"
 
@@ -227,8 +228,8 @@ func (s *RetryMessageHandlerTestSuite) SetupTest() {
 
 func (s *RetryMessageHandlerTestSuite) Test_HandleMessage_RetryNotFinalized() {
 	s.mockBlockFetcher.EXPECT().GetFinalizedHead().Return(types.Hash{}, nil)
-	s.mockBlockFetcher.EXPECT().GetBlock(gomock.Any()).Return(&types.SignedBlock{
-		Block: types.Block{
+	s.mockBlockFetcher.EXPECT().GetBlock(gomock.Any()).Return(&block.SignedBlock{
+		Block: block.Block{
 			Header: types.Header{
 				Number: 99,
 			},
@@ -255,8 +256,8 @@ func (s *RetryMessageHandlerTestSuite) Test_HandleMessage_RetryNotFinalized() {
 
 func (s *RetryMessageHandlerTestSuite) Test_HandleMessage_NoDeposits() {
 	s.mockBlockFetcher.EXPECT().GetFinalizedHead().Return(types.Hash{}, nil)
-	s.mockBlockFetcher.EXPECT().GetBlock(gomock.Any()).Return(&types.SignedBlock{
-		Block: types.Block{
+	s.mockBlockFetcher.EXPECT().GetBlock(gomock.Any()).Return(&block.SignedBlock{
+		Block: block.Block{
 			Header: types.Header{
 				Number: 101,
 			},
@@ -285,8 +286,8 @@ func (s *RetryMessageHandlerTestSuite) Test_HandleMessage_NoDeposits() {
 
 func (s *RetryMessageHandlerTestSuite) Test_HandleMessage_ValidDeposits() {
 	s.mockBlockFetcher.EXPECT().GetFinalizedHead().Return(types.Hash{}, nil)
-	s.mockBlockFetcher.EXPECT().GetBlock(gomock.Any()).Return(&types.SignedBlock{
-		Block: types.Block{
+	s.mockBlockFetcher.EXPECT().GetBlock(gomock.Any()).Return(&block.SignedBlock{
+		Block: block.Block{
 			Header: types.Header{
 				Number: 101,
 			},
