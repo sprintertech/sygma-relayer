@@ -1,8 +1,6 @@
 module github.com/ChainSafe/sygma-relayer
 
-go 1.21
-
-toolchain go1.23.4
+go 1.19
 
 require (
 	github.com/binance-chain/tss-lib v0.0.0-00010101000000-000000000000
