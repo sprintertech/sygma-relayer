@@ -12,6 +12,7 @@ import (
 	"github.com/ChainSafe/sygma-relayer/relayer/transfer"
 	"github.com/ChainSafe/sygma-relayer/store"
 	"github.com/centrifuge/go-substrate-rpc-client/v4/types"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/types/block"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/sygmaprotocol/sygma-core/relayer/message"
 	"github.com/sygmaprotocol/sygma-core/relayer/proposal"
@@ -67,7 +68,7 @@ type PropStorer interface {
 
 type BlockFetcher interface {
 	GetFinalizedHead() (types.Hash, error)
-	GetBlock(blockHash types.Hash) (*types.SignedBlock, error)
+	GetBlock(blockHash types.Hash) (*block.SignedBlock, error)
 }
 
 type DepositProcessor interface {
